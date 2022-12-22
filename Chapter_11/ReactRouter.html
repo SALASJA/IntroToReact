@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>React</title>
+		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		
+		<script src="https://unpkg.com/history@5/umd/history.development.js" crossorigin></script>
+	  <script src="https://unpkg.com/react-router@6/umd/react-router.development.js" crossorigin></script>
+	  <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.js" crossorigin></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/babel">
+			class Link1 extends React.Component{
+				render(){
+					return <p>Hmm link1 </p>;
+				}
+			}
+
+			class Link2 extends React.Component{
+				render(){
+					return <p> Hmm link2 </p>;
+				}
+			}
+
+			class App extends React.Component{
+				render(){
+					return (
+						<React.Fragment>
+							<nav>
+								<ul>
+									<li><ReactRouterDOM.Link to="/Link1">first link</ReactRouterDOM.Link></li>
+									<li><ReactRouterDOM.Link to="/Link2">second link</ReactRouterDOM.Link></li>
+								</ul>
+							</nav>
+							<div>
+								<ReactRouterDOM.Outlet/>
+							</div>
+						</React.Fragment>
+					);
+				}
+			}
+
+			//ahh so this is how it works
+			ReactDOM.render(
+				<ReactRouterDOM.BrowserRouter>
+					<ReactRouterDOM.Routes>
+						<ReactRouterDOM.Route path="/" element={<App/>}>
+							<ReactRouterDOM.Route index element={<Link1/>}/>
+							<ReactRouterDOM.Route path="Link1" element={<Link1/>}/>
+							<ReactRouterDOM.Route path="Link2" element={<Link2/>}/>
+						</ReactRouterDOM.Route>
+					</ReactRouterDOM.Routes>
+				</ReactRouterDOM.BrowserRouter>,
+				document.getElementById("container")
+			);
+		</script>
+	</body>
+</html>

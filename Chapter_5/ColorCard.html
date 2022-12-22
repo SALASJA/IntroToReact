@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>React</title>
+		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<style type="text/css">
+			html, body {
+				background-color:black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/babel">
+			/*
+				by using many different components we can create a Complex Component
+			*/
+			class Card extends React.Component{
+				render(){
+					var cardStyle = {
+							display: "inline-block",
+							width:100,
+							height:150,
+							marginRight: 10,
+							boxShadow: `0px 0px 5px 2px Dark${this.props.color || "grey"}`
+					};
+			
+					return( 
+						<div style={cardStyle}>
+							<Square color={this.props.color || "white"}/>
+							<Label color={this.props.color || "white"}>{this.props.color || "white"}</Label>
+						</div>
+					);
+				}
+			}
+			
+			class Square extends React.Component{
+				render(){
+					var squareStyle = {
+						width:100,
+						height:100,
+						margin:0,
+						backgroundColor: this.props.color || "white",
+					};
+			
+					return <div style={squareStyle}></div>;
+				
+				}
+			}
+
+			class Label extends React.Component{
+				render(){
+					var labelStyle = {
+						width:100,
+						height:50,
+						color: this.props.color || "white",
+						font : "monospace",
+						textAlign: "center",
+					};
+					return <p style={labelStyle}>{this.props.children}</p>;
+				}
+			}
+			
+			ReactDOM.render(
+				<div>
+					<Card color="red"/>
+					<Card color="green"/>
+					<Card color="blue"/>
+					<Card/>
+				</div>, 
+				document.getElementById("container")
+			);
+			
+		</script>
+	</body>
+</html>

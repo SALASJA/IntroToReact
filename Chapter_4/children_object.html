@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>React</title>
+		<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script> 
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<style type="text/css">
+			html, body {
+				background-color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/babel">
+			class Label extends React.Component{
+				render(){
+					var labelStyle = {
+						textAlign: "center",
+						color: "white",
+					};
+					return <p style={labelStyle}>{this.props.children}</p>;
+				}
+			}
+			//any jsx passed in between a component is stored in the this.props.children section 
+			ReactDOM.render(<Label> This is some Text </Label>, document.getElementById("container"));      
+		</script>
+	</body>
+</html>

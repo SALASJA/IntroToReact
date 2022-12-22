@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+		<head>
+			<meta charset="utf-8">
+			<title>React</title>
+			<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+			<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+			<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		</head>
+		<body>
+			<div id="container"></div>
+			<script type="text/babel">
+					/*
+						Class based react component
+						we can use this class, and then use <Square/>
+						when needed, in HTML-like syntax
+
+						Component names must be capitalised
+					*/
+					class Square extends React.Component{
+						render() {
+							return <h1>This is neat</h1>;
+						}
+					}
+
+					ReactDOM.render(<Square/>, document.getElementById("container"));
+			</script>
+		</body>
+</html>
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<title>React</title>
+			<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+			<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+			<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+			<style type="text/css">
+				html, bdoy {
+					background-color:black;
+				}
+			</style>
+		</head>
+		<body>
+			<div id="container"></div>
+			<script type="text/babel">
+				class Label extends React.Component{
+					render(){
+						var counterStyle = {
+							textAlign: "center",
+							color: "white",
+							paddingTop: "40%"
+						};
+						return <p style={counterStyle}></p>;
+					}
+				}
+				
+				class Counter extends React.Component{
+					render(){
+						var squareStyle = {
+							width : 100,
+							height : 100,
+							borderRadius: 10,
+							backgroundColor : `hsl(${this.props.hue || 0}, 100%, 50%)`
+						};
+
+						return <div style={squareStyle}><Label/></div>;
+					}
+				}
+				
+				var hues = [];
+				var i = 0;
+				while(i <= 36){
+					hues.push(i * 10)
+					i = i + 1;
+				}
+				
+				ReactDOM.render(
+					<React.Fragment>
+						{hues.map((obj, i) => <Counter key={i} hue={obj}/>)}
+					</React.Fragment>, 
+					document.getElementById("container")
+				);
+			</script>
+		</body>
+</html>

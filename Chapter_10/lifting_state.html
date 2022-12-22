@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>React</title>
+		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		
+		<script type="text/babel">
+			//need to do the try comnvert function
+			function tryConvert(value,callback){
+				console.log("-----------------------")
+				var parsedValue = parseFloat(value);
+				if(Number.isNaN(parsedValue)){
+					console.log("\terror " + value);
+					return "";
+				}
+				console.log("\tgood " + value);
+				return callback(parsedValue);
+			}
+			
+			function toKg(lbs){
+				return lbs/2.20462;
+			}
+
+			function toLbs(kg){
+				return kg * 2.20462;
+			}
+
+			class MassInput extends React.Component {
+				constructor(props){
+					super(props);
+					this.handleChange = this.handleChange.bind(this);
+				}
+
+				handleChange(event){
+					this.props.changeHandler(event.target.value);
+				}
+
+				render(){
+					return (
+						<label>
+							{this.props.units}
+							<input name={this.props.units} value={this.props.value} onChange={this.handleChange}/>
+						</label>
+					);
+				}
+			}
+			
+			class KgLbsConverter extends React.Component{
+				constructor(props){
+					super(props);
+					this.state = {weight : "", units: "kg"};
+					this.handleKg = this.handleKg.bind(this);
+					this.handleLbs = this.handleLbs.bind(this);
+				}
+
+				handleKg(kg){
+					this.setState({
+						units : "kg",
+						weight: kg
+					});
+				}
+
+				handleLbs(lbs){
+					this.setState({
+						units: "lbs",
+						weight : lbs
+					});
+				}
+			
+				render(){
+					var lbs = ("kg" === this.state.units) ? tryConvert(this.state.weight, toLbs) : this.state.weight;
+					var kg =  ("lbs" === this.state.units) ? tryConvert(this.state.weight, toKg) : this.state.weight;
+					console.log("kg", kg);
+					console.log("lbs",lbs);
+					return (
+						<form>
+							<MassInput units="kg" value={kg} changeHandler={this.handleKg}/>
+							<MassInput units="lbs" value={lbs} changeHandler={this.handleLbs}/>
+						</form>
+					);
+				}
+			}
+
+			ReactDOM.render(<KgLbsConverter/>,document.getElementById("container"));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>React</title>
+		<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<style type="text/css">
+			html, body {
+				background-color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/babel">
+			class Square extends React.Component{
+				render(){
+					var squareStyle = {
+						width: this.props.width ? Number(this.props.width) : 100,
+						height: this.props.height ? Number(this.props.height) : 100,
+						marginBottom: 20,
+						backgroundColor: this.props.color? this.props.color : "yellow",
+						borderRadius: 10,
+						boxShadow : `0px 0px 5px 5px ${this.props.color ? this.props.color : "yellow"}`
+					};
+			
+					return <div style={squareStyle}></div>
+				}
+			} 
+			
+			//with creativity we can make very custom looking components
+			ReactDOM.render(
+				<div>
+					<Square height="200" width="50" color="red"/>
+					<Square color="blue"/>
+					<Square color="green"/>
+					<Square/>
+				</div>, 
+				document.getElementById("container")
+			);
+		</script>
+	</body>
+</html>

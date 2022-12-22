@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>React</title>
+		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/babel">
+			ReactDOM.render(<h1>This is cool</h1>, document.getElementById("container"));
+		</script>
+	</body>
+</html>
+
+<!--
+	Simplest react example doesnt use anything major yet.
+  notice in the ReactDOM render method, the html look stuff isnt inside
+	double quotes. EXACTLY, this is the power of react, as we will see soon.
+
+-->

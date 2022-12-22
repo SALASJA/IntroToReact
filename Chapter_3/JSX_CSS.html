@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>React</title>
+		<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<style type="text/css">
+			html, css {
+				background-color:black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/babel">
+			class Square extends React.Component{
+				render(){
+					var squareStyle = {
+						width: 100,
+						height: 100,
+						backgroundColor: "red",
+						borderRadius: 10,
+						boxShadow: "0px 0px 5px 5px red"
+					};
+					return <div style={squareStyle}></div>;
+				}
+			}
+			ReactDOM.render(<Square/>, document.getElementById("container"));
+		</script>
+	</body>
+</html>

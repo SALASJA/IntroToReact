@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>React</title>
+		<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/babel">
+				/*
+					since functions themselves can be used to define objects,
+					this is one method that can be done to make a Container
+				*/
+				function HelloWorld(){
+					return <h1>Hello World</h1>;
+				}
+
+				ReactDOM.render(<HelloWorld/>, document.getElementById("container"));
+		</script>
+	</body>
+</html>

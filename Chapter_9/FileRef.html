@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>React</title>
+		<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script type="text/babel">
+			class FileInput extends React.Component{
+				constructor(props){
+					super(props);
+					this.handleSubmit = this.handleSubmit.bind(this);
+					this.fileInput = React.createRef();
+				}
+
+				handleSubmit(event){
+					this.fileInput.current.files[0].text().then((data) => {
+							console.log(data);
+					});
+					event.preventDefault();
+				}
+
+				render(){
+					return (
+							<form onSubmit={this.handleSubmit}>
+								<input type="file" ref={this.fileInput}/>
+								<input type="submit"/>
+							</form>
+					);
+				}
+			}
+
+			ReactDOM.render(<FileInput/>, document.getElementById("container"));
+		</script>
+	</body>
+</html>
